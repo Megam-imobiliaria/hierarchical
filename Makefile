@@ -29,6 +29,9 @@ clean:: ## Delete all files created through Build process
 veryclean:: clean ## Delete all generated files
 
 deploy:: build ## Deploy application
+	gcloud app deploy
+	gcloud app browse
+
 
 .ONESHELL:
 .PHONY: help isolate init execute run build compile test clean veryclean deploy
