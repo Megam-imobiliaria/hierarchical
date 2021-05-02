@@ -1,4 +1,4 @@
-# Django Project
+# Django Project at AppEngine
 > This intends to be an [readme-documented][-0], [open-source-licensed][-1], [semantic-versioned][-2],
 [conventional-committed][-3] and [changelogged][-4] git repository starting point
 for the development of a brand-new [twelve-factor][-5] Django project
@@ -11,6 +11,12 @@ A straightforward beginning for an open-source Django project repository
 [-3]: https://www.conventionalcommits.org/en/v1.0.0/ "Conventional Commits"
 [-4]: https://keepachangelog.com/en/1.0.0/ "Keep a Changelog"
 [-5]: https://12factor.com/ "Twelve Factor"
+
+Beside brings GAE's expected file system structure, generic-named powered-up Django project base
+and useful Makefile targets to help development process, it also provides deploy-on-push automation 
+through the use of Google's official [deploy-appengine][1] github action.
+
+[1]: https://github.com/google-github-actions/deploy-appengine
 
 ### Table of Contents
 <details>
@@ -46,6 +52,8 @@ $ python3 --version
 Python 3.9.0+
 ```
 
+Maybe you also want to [install Google Cloud SDK][2] to be able to manage your App Engine service via `gcloud` cli
+
 Thus, clone the recent-created repository locally,
 and set up its development environment:
 
@@ -54,10 +62,23 @@ $ make init
 $ . venv/bin/activate
 ```
 
-Finally, you are ready to create [your Django's first app][1]
+Finally, you are ready to create [your Django's first app][3]
 and proceed developing your application.
 
-[1]: https://docs.djangoproject.com/en/dev/intro/tutorial01/
+[2]: https://cloud.google.com/sdk/docs/install
+[3]: https://docs.djangoproject.com/en/dev/intro/tutorial01/
+
+### Continuos deployment
+Well, you need to have a *Google Cloud Project* configured.
+So, through its console, enable the [App Engine Admin API][4]
+and also set up a [Service Account][5] to your project,
+registering its key into your fresh-repo [secrets][6]
+as `GCP_SA_KEY`.
+
+[4]: https://console.developers.google.com/apis/api/appengine.googleapis.com "Google Cloud Console: App Engine Admin API"
+[5]: https://console.cloud.google.com/iam-admin/serviceaccounts "Google Cloud Console: Service Accounts"
+[6]: https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets "GitHub Docs: Secrets"
+
 
 ### Repo publication
 After all, you should make this project your own: \
@@ -88,7 +109,12 @@ It also powers up development workflow by:
 ```
 .
 ├── .git/                       Version control system folder
+├── .github                     Github repo's configuration directory
+│   └── workflows               Continuous integration settings
+│       └── deploy.yml          Deploy-on-push automation descriptor
+├── .gcloudignore               Ignored files manifest
 ├── .gitignore                  Ignored files manifest
+├── app.yml                     App Engine service's settings
 ├── CHANGELOG.md                Release notes description
 ├── LICENSE                     License file
 ├── Makefile                    Development management facilities
@@ -104,8 +130,8 @@ It also powers up development workflow by:
 This project is maintained by the author, [@artu-hnrq](https://github.com/artu-hnrq). \
 It has reached a stable, usable state and is being **actively developed**.
 
-[>2]: https://www.repostatus.org "Repo maintenance status"
 [B2]: https://www.repostatus.org/badges/latest/active.svg "Repostatus active badge"
+[>2]: https://www.repostatus.org "Repo maintenance status"
 
 
 ## License [![][B3]][>3]
