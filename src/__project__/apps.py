@@ -75,6 +75,6 @@ class SourceApp(type):
     def urlpatterns(cls):
         if cls.has('urls'):
             from django.urls import path, include
-            return path(cls.prefix + '/', include('%s.urls' % cls.python_path))
+            return path(cls.prefix + '/' if cls.prefix else '', include('%s.urls' % cls.python_path))
 
         raise ModuleNotFoundError()

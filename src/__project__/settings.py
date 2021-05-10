@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
+import os
 import sys
 
 from django.core.management.utils import get_random_secret_key
@@ -71,7 +72,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'builtins': []
+            'builtins': ['hierarchical.templatetags.section']
         },
     },
 ]
@@ -86,8 +87,31 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': REPO_ROOT / 'db.sqlite3',
-    }
+    },
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': '!@',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3000'
+#     }
+# }
+
+if os.getenv('GAE_APPLICATION', None):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': '!@',
+            'HOST': '/cloudsql/gamalobo:southamerica-east1:megam-db',
+        }
+    }
+
 
 FIXTURE_DIRS = [
     REPO_ROOT / 'fixtures'

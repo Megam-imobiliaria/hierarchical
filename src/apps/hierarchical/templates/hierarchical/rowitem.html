@@ -1,0 +1,13 @@
+<tr class="table-{{ color }}" onclick="document.location ='{% url 'section' section.fullcode %}';" style="cursor: pointer;">
+    <th class="col-1">{{ section.fullcode }}</th>
+{#    <a href="{% url 'section' section.fullcode %}">#}
+        <td class="col">
+            <b>{{ section.label }}</b>
+        </td>
+{#    </a>#}
+    <td class="col-1 text-center">
+        {% if section.immediates %}
+            <div class="badge bg-dark rounded-pill">{{ section.immediates.count }}</div>
+        {% endif %}
+    </td>
+</tr>

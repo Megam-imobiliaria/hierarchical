@@ -29,7 +29,7 @@ clean:: ## Delete all files created through Build process
 veryclean:: clean ## Delete all generated files
 
 deploy:: build ## Deploy application
-	gcloud app deploy
+	gcloud app deploy --no-cache
 	gcloud app browse
 
 

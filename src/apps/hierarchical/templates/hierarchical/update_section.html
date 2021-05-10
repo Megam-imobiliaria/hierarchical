@@ -1,0 +1,24 @@
+{% extends 'hierarchical/modal.html' %}
+
+{% block id %}update{% endblock %}
+
+{% block title %}
+    Editar secção {{ relative.fullcode }}
+{% endblock %}
+
+{% block action %}
+    {% url 'update' %}
+{% endblock %}
+
+{% block body %}
+    <div class="form-outline mb-3">
+          <input type="text" id="label" name="label" class="form-control" value="{{ relative.label }}" required/>
+          <label class="form-label" for="label" style="margin-left: 0px">Nomeclatura</label>
+    </div>
+    <input type="hidden" id="fullcode" name="fullcode" class="form-control" value="{{ relative.fullcode }}"/>
+{% endblock %}
+
+{% block footer %}
+    <input type="submit" class="btn btn-success" value="Salvar">
+    <button type="button" class="btn btn-default" data-mdb-dismiss="modal">Cancelar</button>
+{% endblock %}

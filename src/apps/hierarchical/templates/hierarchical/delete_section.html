@@ -1,0 +1,21 @@
+{% extends 'hierarchical/modal.html' %}
+
+{% block id %}delete{% endblock %}
+
+{% block title %}
+    Deletar secção {{ relative.fullcode }}
+{% endblock %}
+
+{% block action %}
+    {% url 'delete' %}
+{% endblock %}
+
+{% block body %}
+    Tem certeza que deseja deletar a secção?
+    <input type="hidden" id="fullcode2" name="fullcode" class="form-control" value="{{ relative.fullcode }}"/>
+{% endblock %}
+
+{% block footer %}
+    <button type="button" class="btn btn-default" data-mdb-dismiss="modal">Cancelar</button>
+    <input type="submit" class="btn btn-danger" value="Deletar">
+{% endblock %}

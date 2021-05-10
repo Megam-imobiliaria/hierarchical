@@ -9,7 +9,7 @@ DJANGO_ADMIN ?= $(PYTHON) $(BACKEND_ROOT)/manage.py
 
 init:: veryclean requirements.txt isolate
 	$(PYTHON) -m pip install --upgrade pip
-	$(PYTHON) -m pip install -r requirements.txt
+	sudo $(PYTHON) -m pip install -r requirements.txt
 	$(PYTHON) -m pip freeze
 
 isolate::
@@ -23,6 +23,7 @@ run::
 build:: compile
 	$(DJANGO_ADMIN) makemigrations
 	$(DJANGO_ADMIN) migrate
+	#$(DJANGO_ADMIN) loaddata auth section
 
 compile::
 	$(DJANGO_ADMIN) collectstatic --noinput

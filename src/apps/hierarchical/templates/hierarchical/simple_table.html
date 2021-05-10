@@ -1,0 +1,30 @@
+{% if section_list %}
+
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th class="col-1" scope="col">Codificação</th>
+                <th scope="col">Nomeclatura</th>
+                <th class="col-1" scope="col">Subseções</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for section in section_list %}
+                {% if relative.level > section.level %}
+                    {% rowitem section color='active' %}
+                {% elif relative.level >= section.level %}
+                    {% rowitem section color='dark' %}
+                {% else %}
+                    {% rowitem section %}
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+
+    <div class="text-center">
+        <h5>Ainda não há secções aqui.</h5>
+    </div>
+
+{% endif %}

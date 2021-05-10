@@ -1,0 +1,98 @@
+{% extends 'default.html' %}
+
+{% block front %}
+
+    <div class="container my-5">
+        <section>
+            <div class="row justify-content-around align-items-center text-center">
+                <div class="col">
+                    {% if relative.previous %}
+                    <a href="{% url 'section' relative.previous.fullcode  %}">
+                    <button type="button" class="btn btn-dark btn-floating btn-lg"
+                        data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                        title="Secção anterior"
+                    >
+                        <i class="fas fa-angle-left"></i>
+                    </button>
+                    </a>
+                    {% endif %}
+                </div>
+
+                <div class="col">
+                    <span class="badge bg-dark">{{ relative.fullcode }}</span>
+                    <h3><strong>{{ relative }}</strong></h3>
+                </div>
+
+                <div class="col">
+                    {% if relative.next %}
+                    <a href="{% url 'section' relative.next.fullcode  %}">
+                    <button type="button" class="btn btn-dark btn-floating btn-lg"
+                        data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                        title="Secção posterior"
+                    >
+                        <i class="fas fa-angle-right"></i>
+                    </button>
+                    </a>
+                    {% endif %}
+                </div>
+
+                {% if relative.parent %}
+                <div class="w-100"></div>
+                <div class="col">
+                    <a href="{% url 'section' relative.parent.fullcode  %}">
+                    <button type="button" class="btn btn-primary btn-floating btn-sm"
+                        data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                        title="Secção superior"
+                    >
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                    </a>
+
+                    <a href="" data-mdb-toggle="modal" data-mdb-target="#update-modal">
+                    <button type="button" class="btn btn-secondary btn-floating btn-sm"
+                        data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                        title="Editar Secção"
+                    >
+                        <i class="fas fa-pen"></i>
+                    </button>
+                    </a>
+
+                    <a href="" data-mdb-toggle="modal" data-mdb-target="#delete-modal">
+                    <button type="button" class="btn btn-danger btn-floating btn-sm"
+                        data-mdb-toggle="tooltip" data-mdb-placement="bottom"
+                        title="Deletar Secção"
+                    >
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+
+    <hr class="my-5" />
+{% endblock %}
+
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            {% include 'hierarchical/toast.html' %}
+        {% endfor %}
+    {% endif %}
+
+    {% include 'hierarchical/simple_table.html' %}
+
+    <section class="mb-4 text-center">
+        <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#create-modal">
+          Criar nova codificação
+        </button>
+
+        {% include 'hierarchical/create_section.html' %}
+        {% include 'hierarchical/update_section.html' %}
+        {% include 'hierarchical/delete_section.html' %}
+    </section>
+
+
+{% endblock %}

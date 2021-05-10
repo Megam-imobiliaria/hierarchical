@@ -1,0 +1,35 @@
+<div class="modal top fade"
+     id="{% block id %}form{% endblock %}-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="form-modal-label"
+     aria-hidden="true"
+     data-mdb-backdrop="true"
+     data-mdb-keyboard="true"
+>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">{% block title %}{% endblock %}</h4>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-hidden="true" aria-label="Close">
+                    </button>
+            </div>
+
+            <form
+              action="{% block action %}{% endblock %}"
+              method="{% block method %}post{% endblock %}"
+            >
+                {% csrf_token %}
+                <div id="form-modal-body" class="modal-body">
+                    {% block body %}{% endblock %}
+                </div>
+
+                <div class="modal-footer">
+                    {% block footer %}{% endblock %}
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

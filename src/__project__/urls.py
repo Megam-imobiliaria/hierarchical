@@ -19,5 +19,5 @@ from . import __project__
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-] # \
-    # + __project__.urlpatterns
+] \
+    + __project__.urlpatterns
