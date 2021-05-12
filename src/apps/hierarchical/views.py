@@ -1,8 +1,4 @@
-
-from django.conf import settings
-from django.http import JsonResponse
 from django.shortcuts import redirect
-from django.views import View
 from django.views.generic import ListView
 from django.contrib import messages
 
@@ -12,20 +8,24 @@ from .models import Section
 def create(request):
     label = request.POST.get('label')
     fullcode = request.POST.get('fullcode')
+
     *parent_code, code = fullcode.rsplit('.', 1)
 
     parent = Section.root() \
             if not parent_code else \
             Section.objects.get(fullcode=parent_code[0])
 
-    Section(
-        label=label,
-        code=int(code),
-        fullcode=fullcode,
-        parent=parent
-    ).save()
+    if Section.objects.filter(fullcode=fullcode):
+        messages.warning(request, f"Secção {fullcode} já existe")
+    else:
+        Section(
+            label=label,
+            code=int(code),
+            fullcode=fullcode,
+            parent=parent
+        ).save()
+        messages.success(request, f'Secção {fullcode} criada com sucesso')
 
-    messages.success(request, f'Secção {fullcode} criada com sucesso')
     return redirect('section', parent.fullcode or '')
 
 
@@ -78,4 +78,4 @@ class SectionListView(ListView):
         relative = self.kwargs['relative'] if 'relative' in self.kwargs else Section.root()
 
         queryset = relative.parents | relative.queryset | relative.immediates
-        return queryset.exclude(code=None).order_by('fullcode')
+        return queryset.exclude(code=None).order_by('id')

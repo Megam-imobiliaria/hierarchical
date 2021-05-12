@@ -31,11 +31,11 @@ class Section(models.Model):
     @property
     def parents(self):
         parents = [] if self.isroot else self.parent.parents | self.queryset
-        return Section.objects.filter(id__in=[section.id for section in parents]).order_by('fullcode')
+        return Section.objects.filter(id__in=[section.id for section in parents])
 
     @property
     def immediates(self):
-        return self.section_set.all().order_by('fullcode')
+        return self.section_set.all().order_by('code')
 
     @property
     def queryset(self):
