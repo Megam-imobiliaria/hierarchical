@@ -83,23 +83,23 @@ WSGI_APPLICATION = '__project__.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': REPO_ROOT / 'db.sqlite3',
-    },
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': '!@',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3000'
-#     }
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': REPO_ROOT / 'db.sqlite3',
+#     },
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'gGiGOwsfuh5Ewp7g',
+        'HOST': '127.0.0.1',
+        'PORT': '3000'
+    }
+}
 
 if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
@@ -107,8 +107,8 @@ if os.getenv('GAE_APPLICATION', None):
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'postgres',
             'USER': 'postgres',
-            'PASSWORD': '!@',
-            'HOST': '/cloudsql/gamalobo:southamerica-east1:megam-db',
+            'PASSWORD': 'gGiGOwsfuh5Ewp7g',
+            'HOST': '/cloudsql/system-location:southamerica-east1:postgres-db',
         }
     }
 

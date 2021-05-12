@@ -1,0 +1,45 @@
+[
+  {
+    "model": "hierarchical.section",
+    "pk": 1,
+    "fields": {
+      "code": "1",
+      "label": "teste"
+    }
+  }, {
+    "model": "hierarchical.section",
+    "pk": 2,
+    "fields": {
+      "code": "2.1",
+      "label": "lalalal"
+    }
+  }, {
+    "model": "hierarchical.section",
+    "pk": 3,
+    "fields": {
+      "code": "1.1",
+      "label": "lalalal"
+    }
+  }, {
+    "model": "hierarchical.section",
+    "pk": 4,
+    "fields": {
+      "code": "1.2",
+      "label": "lalalal"
+    }
+  }, {
+    "model": "hierarchical.section",
+    "pk": 5,
+    "fields": {
+      "code": "1.2.1",
+      "label": "lalalal"
+    }
+  }, {
+    "model": "hierarchical.section",
+    "pk": 6,
+    "fields": {
+      "code": "2",
+      "label": "lalalal"
+    }
+  }
+]

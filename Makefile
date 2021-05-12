@@ -28,6 +28,9 @@ clean:: ## Delete all files created through Build process
 
 veryclean:: clean ## Delete all generated files
 
+connect-db: ## Connect to Google Cloud SQL intance
+	./cloud_sql_proxy -instances=system-location:southamerica-east1:postgres-db=tcp:3000
+
 deploy:: build ## Deploy application
 	gcloud app deploy --no-cache
 	gcloud app browse
